@@ -5,6 +5,7 @@ A modern, stylish, and feature-rich YouTube Music desktop client designed specif
 ![YouTube Music Desktop Logo](icons/icon.png)
 
 ![App Screenshot - Player](screenshots/app-preview.png)
+
 ![App Screenshot - Home](screenshots/app-home.png)
 
 ## ✨ Features
