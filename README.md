@@ -1,41 +1,70 @@
-# YouTube Music Desktop
+# 🎵 YouTube Music Desktop
 
-YouTube Music'i masaüstü uygulaması olarak çalıştıran Electron tabanlı uygulama.
+Windows için özel olarak tasarlanmış, gelişmiş özelliklere sahip, modern ve şık bir YouTube Music masaüstü istemcisi.
 
-![YouTube Music Desktop](icons/icon.png)
+![YouTube Music Desktop Logo](icons/icon.png)
 
-## Özellikler
+## ✨ Özellikler
 
-- 🎵 YouTube Music web arayüzü tam ekran
-- 🔔 System tray entegrasyonu (Discord gibi)
-- ❌ X tuşunda kapanmak yerine tepsi alanına küçültme (ayarlanabilir)
-- 🎨 Şeffaf pencere kontrolleri
-- ⚙️ Ayarlar paneli
-- 📦 Portable veya kurulumlu kullanım
+Bu uygulama, standart web deneyiminin ötesine geçerek masaüstü için optimize edilmiştir:
 
-## Kurulum
+- **💎 Modern ve Şeffaf Arayüz:** Windows 11 Mica efekti destekli, çerçevesiz ve şık tasarım.
+- **🖼️ Yerel Pencere Kontrolleri:** YouTube Music arayüzü ile bütünleşik, dikkat dağıtmayan entegre pencere butonları.
+- **🔔 Sistem Tepsisi (Tray) Desteği:** 
+  - Uygulamayı kapattığınızda (`X`) tamamen kapanmaz, Discord gibi sistem tepsisine küçülür.
+  - Arka planda müzik çalmaya devam eder.
+- **🖱️ Gelişmiş Navigasyon:** Tıklanabilir alan sorunları giderilmiş, optimize edilmiş kullanıcı deneyimi.
+- **📦 Taşınabilir (Portable):** Kurulum gerektirmez, istediğiniz yerde çalıştırın.
+- **⚙️ Özelleştirilebilir Ayarlar:**
+  - Tepsiye küçültme seçeneği
+  - Başlangıçta gizli başlatma
+  - Şeffaflık efektini açıp kapatma
 
-### Hazır Kurulum Dosyası
-[Releases](../../releases) sayfasından `YouTube Music Setup.exe` indirip kurabilirsiniz.
+## 🚀 İndirme ve Kurulum
 
-### Kaynak Koddan Çalıştırma
+En son sürümü [Releases](https://github.com/Alchemei/youtube-music-desktop-app/releases) sayfasından indirebilirsiniz.
 
+### Kurulumsuz Kullanım (Portable)
+1. `YouTubeMusic-Portable-v2.zip` dosyasını indirin.
+2. ZIP dosyasını klasöre çıkartın.
+3. `YouTube Music.exe` dosyasını çalıştırın.
+
+*Not: Uygulamanın çalışması için yanındaki dosyalar gereklidir. Sadece exe dosyasını masaüstüne almayınız, kısayol oluşturunuz.*
+
+## 🛠️ Geliştirme
+
+Bu projeyi geliştirmek veya kaynak kodundan çalıştırmak isterseniz:
+
+### Gereksinimler
+- [Node.js](https://nodejs.org/) (Sürüm 18 veya üzeri)
+- [Git](https://git-scm.com/)
+
+### Kurulum Adımları
+
+1. Repoyu klonlayın:
 ```bash
-# Bağımlılıkları yükle
-npm install
-
-# Uygulamayı çalıştır
-npm start
-
-# EXE oluştur
-npm run build
+git clone https://github.com/Alchemei/youtube-music-desktop-app.git
+cd youtube-music-desktop-app
 ```
 
-## Gereksinimler
+2. Bağımlılıkları yükleyin:
+```bash
+npm install
+```
 
-- Node.js 18+
-- npm
+3. Uygulamayı geliştirme modunda çalıştırın:
+```bash
+npm start
+```
 
-## Lisans
+4. Exe dosyası oluşturun:
+```bash
+npm run package
+```
 
-MIT
+## 📝 Lisans
+
+Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
+
+---
+**Geliştirici:** [Alchemei](https://github.com/Alchemei)

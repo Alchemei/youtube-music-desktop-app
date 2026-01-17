@@ -1,19 +1,27 @@
 {
   "name": "youtube-music-desktop",
   "version": "1.0.0",
-  "description": "YouTube Music Desktop Application with System Tray",
+  "description": "Gelişmiş YouTube Music Masaüstü Uygulaması - Şeffaf Tasarım ve Sistem Tepsisi Desteği",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "package": "electron-packager . \"YouTube Music\" --platform=win32 --arch=x64 --icon=icons/icon.ico --out=dist --overwrite --asar"
   },
   "keywords": [
     "youtube",
     "music",
     "desktop",
-    "electron"
+    "electron",
+    "transparent",
+    "mica",
+    "windows"
   ],
-  "author": "User",
+  "author": "Alchemei",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alchemei/youtube-music-desktop-app.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "electron": "^28.0.0",
