@@ -1,7 +1,7 @@
 {
   "name": "youtube-music-desktop",
   "version": "1.0.0",
-  "description": "Gelişmiş YouTube Music Masaüstü Uygulaması - Şeffaf Tasarım ve Sistem Tepsisi Desteği",
+  "description": "Advanced YouTube Music Desktop App - Transparent Design & System Tray Support",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

@@ -1,70 +1,73 @@
 # 🎵 YouTube Music Desktop
 
-Windows için özel olarak tasarlanmış, gelişmiş özelliklere sahip, modern ve şık bir YouTube Music masaüstü istemcisi.
+A modern, stylish, and feature-rich YouTube Music desktop client designed specifically for Windows.
 
 ![YouTube Music Desktop Logo](icons/icon.png)
 
-## ✨ Özellikler
+## ✨ Features
 
-Bu uygulama, standart web deneyiminin ötesine geçerek masaüstü için optimize edilmiştir:
+This application goes beyond the standard web experience, optimized for the desktop:
 
-- **💎 Modern ve Şeffaf Arayüz:** Windows 11 Mica efekti destekli, çerçevesiz ve şık tasarım.
-- **🖼️ Yerel Pencere Kontrolleri:** YouTube Music arayüzü ile bütünleşik, dikkat dağıtmayan entegre pencere butonları.
-- **🔔 Sistem Tepsisi (Tray) Desteği:** 
-  - Uygulamayı kapattığınızda (`X`) tamamen kapanmaz, Discord gibi sistem tepsisine küçülür.
-  - Arka planda müzik çalmaya devam eder.
-- **🖱️ Gelişmiş Navigasyon:** Tıklanabilir alan sorunları giderilmiş, optimize edilmiş kullanıcı deneyimi.
-- **📦 Taşınabilir (Portable):** Kurulum gerektirmez, istediğiniz yerde çalıştırın.
-- **⚙️ Özelleştirilebilir Ayarlar:**
-  - Tepsiye küçültme seçeneği
-  - Başlangıçta gizli başlatma
-  - Şeffaflık efektini açıp kapatma
+- **💎 Modern & Transparent UI:** Frameless design with Windows 11 Mica effect support.
+- **🖼️ Native Window Controls:** Integrated window buttons that blend seamlessly with the YouTube Music interface.
+- **🔔 System Tray Support:** 
+  - Minimizes to the system tray (`X` button behavior is configurable).
+  - Keeps music playing in the background.
+- **🖱️ Enhanced Navigation:** Optimized for a smooth user experience with fixed clickable areas.
+- **📦 Portable:** No installation required (optional), run it directly.
+- **⚙️ Customizable Settings:**
+  - Minimize to tray option
+  - Start minimized
+  - Toggle transparency effect
 
-## 🚀 İndirme ve Kurulum
+## 🚀 Download & Installation
 
-En son sürümü [Releases](https://github.com/Alchemei/youtube-music-desktop-app/releases) sayfasından indirebilirsiniz.
+You can download the latest version from the [Releases](https://github.com/Alchemei/youtube-music-desktop-app/releases) page, or use the installer provided in this repository.
 
-### Kurulumsuz Kullanım (Portable)
-1. `YouTubeMusic-Portable-v2.zip` dosyasını indirin.
-2. ZIP dosyasını klasöre çıkartın.
-3. `YouTube Music.exe` dosyasını çalıştırın.
+### Installation
+1. Navigate to the `installer` folder in this repository.
+2. Download `YouTube Music Setup.exe`.
+3. Run the installer to set up the application.
 
-*Not: Uygulamanın çalışması için yanındaki dosyalar gereklidir. Sadece exe dosyasını masaüstüne almayınız, kısayol oluşturunuz.*
+### Portable Usage
+1. Download `YouTubeMusic-Portable-v2.zip` from releases.
+2. Extract the ZIP file.
+3. Run `YouTube Music.exe`.
 
-## 🛠️ Geliştirme
+## 🛠️ Development
 
-Bu projeyi geliştirmek veya kaynak kodundan çalıştırmak isterseniz:
+If you want to contribute or run from source:
 
-### Gereksinimler
-- [Node.js](https://nodejs.org/) (Sürüm 18 veya üzeri)
+### Requirements
+- [Node.js](https://nodejs.org/) (Version 18+)
 - [Git](https://git-scm.com/)
 
-### Kurulum Adımları
+### Steps
 
-1. Repoyu klonlayın:
+1. Clone the repository:
 ```bash
 git clone https://github.com/Alchemei/youtube-music-desktop-app.git
 cd youtube-music-desktop-app
 ```
 
-2. Bağımlılıkları yükleyin:
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Uygulamayı geliştirme modunda çalıştırın:
+3. Run in development mode:
 ```bash
 npm start
 ```
 
-4. Exe dosyası oluşturun:
+4. Build the executable:
 ```bash
 npm run package
 ```
 
-## 📝 Lisans
+## 📝 License
 
-Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
-**Geliştirici:** [Alchemei](https://github.com/Alchemei)
+**Developer:** [Alchemei](https://github.com/Alchemei)
