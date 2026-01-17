@@ -91,6 +91,8 @@ webview.addEventListener('dom-ready', () => {
             margin-right: 140px !important;
         }
     `);
+
+    /* JS drag injection removed - reverting to CSS overlay */
 });
 
 console.log('YouTube Music Desktop - Renderer yüklendi');
