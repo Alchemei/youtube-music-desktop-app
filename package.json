@@ -1,0 +1,42 @@
+{
+  "name": "youtube-music-desktop",
+  "version": "1.0.0",
+  "description": "YouTube Music Desktop Application with System Tray",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [
+    "youtube",
+    "music",
+    "desktop",
+    "electron"
+  ],
+  "author": "User",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "electron-packager": "^17.1.2"
+  },
+  "build": {
+    "appId": "com.ytmusic.desktop",
+    "productName": "YouTube Music",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "styles.css",
+      "renderer.js",
+      "icons/**/*"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "icons/icon.ico"
+    }
+  }
+}

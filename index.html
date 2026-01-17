@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://music.youtube.com https://*.youtube.com https://*.googlevideo.com https://*.googleapis.com https://*.gstatic.com https://*.google.com; script-src 'self' 'unsafe-inline' https://*.youtube.com https://*.google.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://*.youtube.com https://*.googleapis.com; img-src 'self' data: https: blob:; media-src 'self' https: blob:; connect-src 'self' https: wss:; frame-src https://music.youtube.com https://*.youtube.com;">
+  <title>YouTube Music</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Custom Title Bar -->
+  <div class="title-bar">
+    <div class="title-bar-drag">
+      <div class="app-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="10" fill="#FF0000"/>
+          <path d="M10 8l6 4-6 4V8z" fill="white"/>
+        </svg>
+      </div>
+      <span class="app-title">YouTube Music</span>
+    </div>
+    
+    <div class="title-bar-controls">
+      <button class="control-btn settings-btn" id="settingsBtn" title="Ayarlar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+      <button class="control-btn minimize-btn" id="minimizeBtn" title="Küçült">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <rect y="5" width="12" height="2" fill="currentColor"/>
+        </svg>
+      </button>
+      <button class="control-btn maximize-btn" id="maximizeBtn" title="Büyüt">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <rect x="1" y="1" width="10" height="10" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </button>
+      <button class="control-btn close-btn" id="closeBtn" title="Kapat">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Settings Panel -->
+  <div class="settings-overlay" id="settingsOverlay">
+    <div class="settings-panel">
+      <div class="settings-header">
+        <h2>Ayarlar</h2>
+        <button class="settings-close" id="settingsClose" title="Kapat">
+          <svg width="20" height="20" viewBox="0 0 12 12">
+            <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="settings-content">
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">X tuşunda tepsi alanına küçült</span>
+            <span class="setting-desc">Kapatmak yerine arka planda çalışmaya devam et</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="minimizeToTray" title="Tepsi alanına küçült">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Başlangıçta gizli başlat</span>
+            <span class="setting-desc">Uygulama açıldığında tepsi alanında başla</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="startMinimized" title="Gizli başlat">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Şeffaflık efekti</span>
+            <span class="setting-desc">Windows Mica şeffaflık efekti (yeniden başlatma gerekir)</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="transparency" title="Şeffaflık">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube Music WebView -->
+  <webview id="ytmusic" src="https://music.youtube.com" allowpopups></webview>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

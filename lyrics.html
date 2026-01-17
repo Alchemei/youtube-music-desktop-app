@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Şarkı Sözleri</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .lyrics-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .lyrics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      -webkit-app-region: drag;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .song-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .song-title {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .song-artist {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-controls {
+      display: flex;
+      gap: 8px;
+      -webkit-app-region: no-drag;
+    }
+
+    .control-btn {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: #999;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .close-btn:hover {
+      background: #e81123;
+      color: #fff;
+    }
+
+    .lyrics-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    .lyrics-content::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .lyrics-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .lyrics-content::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+
+    .lyrics-content::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .lyrics-text {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      line-height: 2;
+      text-align: center;
+    }
+
+    .lyrics-line {
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .lyrics-line:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .lyrics-line.active {
+      color: #FF0000;
+      font-weight: 600;
+      font-size: 18px;
+      background: rgba(255, 0, 0, 0.1);
+    }
+
+    .no-lyrics {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .no-lyrics svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .no-lyrics p {
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #FF0000;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .search-box {
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .search-input:focus {
+      border-color: #FF0000;
+      background: rgba(255, 255, 255, 0.15);
+    }
+  </style>
+</head>
+<body>
+  <div class="lyrics-container">
+    <div class="lyrics-header">
+      <div class="song-info">
+        <div class="song-title" id="songTitle">Şarkı seçilmedi</div>
+        <div class="song-artist" id="songArtist">Bir şarkı çalmaya başlayın</div>
+      </div>
+      <div class="header-controls">
+        <button class="control-btn" id="minimizeBtn" title="Küçült">
+          <svg width="10" height="10" viewBox="0 0 12 12">
+            <rect y="5" width="12" height="2" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="control-btn close-btn" id="closeBtn" title="Kapat">
+          <svg width="10" height="10" viewBox="0 0 12 12">
+            <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="lyrics-content" id="lyricsContent">
+      <div class="no-lyrics" id="noLyrics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
+        </svg>
+        <h3>Şarkı Sözleri</h3>
+        <p>YouTube Music'te bir şarkı çalın<br/>Sözler otomatik olarak görünecek</p>
+      </div>
+      <div class="loading" id="loading" style="display: none;">
+        <div class="loading-spinner"></div>
+      </div>
+      <div class="lyrics-text" id="lyricsText" style="display: none;"></div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" class="search-input" id="searchInput" placeholder="Şarkı adı veya sanatçı ara...">
+    </div>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // Pencere kontrolleri
+    document.getElementById('closeBtn').addEventListener('click', () => {
+      window.electronAPI.closeLyrics();
+    });
+
+    document.getElementById('minimizeBtn').addEventListener('click', () => {
+      window.electronAPI.minimizeLyrics();
+    });
+
+    // Şarkı bilgisi güncellendiğinde
+    window.electronAPI.onSongUpdated((songInfo) => {
+      document.getElementById('songTitle').textContent = songInfo.title || 'Bilinmeyen Şarkı';
+      document.getElementById('songArtist').textContent = songInfo.artist || 'Bilinmeyen Sanatçı';
+      
+      if (songInfo.title && songInfo.artist) {
+        fetchLyrics(songInfo.title, songInfo.artist);
+      }
+    });
+
+    // Şarkı sözlerini getir
+    async function fetchLyrics(title, artist) {
+      const noLyrics = document.getElementById('noLyrics');
+      const loading = document.getElementById('loading');
+      const lyricsText = document.getElementById('lyricsText');
+
+      noLyrics.style.display = 'none';
+      loading.style.display = 'flex';
+      lyricsText.style.display = 'none';
+
+      try {
+        // lyrics.ovh API kullan
+        const response = await fetch(`https://api.lyrics.ovh/v1/${encodeURIComponent(artist)}/${encodeURIComponent(title)}`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.lyrics) {
+            displayLyrics(data.lyrics);
+          } else {
+            showNoLyrics();
+          }
+        } else {
+          showNoLyrics();
+        }
+      } catch (error) {
+        console.error('Lyrics fetch error:', error);
+        showNoLyrics();
+      }
+    }
+
+    function displayLyrics(lyrics) {
+      const loading = document.getElementById('loading');
+      const lyricsText = document.getElementById('lyricsText');
+      const noLyrics = document.getElementById('noLyrics');
+
+      loading.style.display = 'none';
+      noLyrics.style.display = 'none';
+      
+      // Şarkı sözlerini satırlara böl
+      const lines = lyrics.split('\n').filter(line => line.trim());
+      lyricsText.innerHTML = lines.map((line, index) => 
+        `<div class="lyrics-line" data-index="${index}">${line}</div>`
+      ).join('');
+      
+      lyricsText.style.display = 'block';
+    }
+
+    function showNoLyrics() {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('lyricsText').style.display = 'none';
+      document.getElementById('noLyrics').style.display = 'flex';
+      document.getElementById('noLyrics').querySelector('p').innerHTML = 
+        'Bu şarkı için söz bulunamadı<br/>Manuel arama yapabilirsiniz';
+    }
+
+    // Manuel arama
+    document.getElementById('searchInput').addEventListener('keypress', async (e) => {
+      if (e.key === 'Enter') {
+        const query = e.target.value.trim();
+        if (query) {
+          const parts = query.split(' - ');
+          if (parts.length >= 2) {
+            fetchLyrics(parts[1], parts[0]);
+          } else {
+            // Sadece şarkı adı girilmişse
+            fetchLyrics(query, '');
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
