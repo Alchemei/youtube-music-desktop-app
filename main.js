@@ -195,10 +195,16 @@ if (!gotTheLock) {
   });
 
   app.on('window-all-closed', () => {
-    // Windows'ta pencere kapandığında uygulamayı kapatma
+    if (process.platform !== 'darwin') {
+      app.quit();
+    }
   });
 
   app.on('before-quit', () => {
     app.isQuitting = true;
+    if (tray) {
+      tray.destroy();
+      tray = null;
+    }
   });
 }
