@@ -167,22 +167,38 @@ ipcMain.handle('is-maximized', () => {
   return mainWindow ? mainWindow.isMaximized() : false;
 });
 
-// Uygulama hazır olduğunda
-app.whenReady().then(() => {
-  createWindow();
-  createTray();
+// Tek bir örnek kilit mekanizması
+const gotTheLock = app.requestSingleInstanceLock();
 
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // İkinci bir örnek çalıştırılmaya çalışıldığında
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      if (!mainWindow.isVisible()) mainWindow.show();
+      mainWindow.focus();
     }
   });
-});
 
-app.on('window-all-closed', () => {
-  // Windows'ta pencere kapandığında uygulamayı kapatma
-});
+  // Uygulama hazır olduğunda
+  app.whenReady().then(() => {
+    createWindow();
+    createTray();
 
-app.on('before-quit', () => {
-  app.isQuitting = true;
-});
+    app.on('activate', () => {
+      if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+      }
+    });
+  });
+
+  app.on('window-all-closed', () => {
+    // Windows'ta pencere kapandığında uygulamayı kapatma
+  });
+
+  app.on('before-quit', () => {
+    app.isQuitting = true;
+  });
+}
